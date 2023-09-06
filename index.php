@@ -1,13 +1,22 @@
 <?php
 require('./inc/init.inc.php');
-//pour le debut
-var_dump(RACINE_SITE);
-echo '<br>';
-echo session_status();
-
 //notre accueil
-echo '<h2>Notre futur page d\'accueil pour notre boutique</h2>';
+require('./inc/haut.inc.php');
+?>
+<h2>Notre page d'accueil</h2>
+<p>Coincée entre le haut et la bas ! </p>
+<!-- var_dump(RACINE_SITE);
+echo '<br>';
+echo session_status(); -->
+<?php
+// echo getenv('NOM_VARIABLE');
+// echo '<br>';
+// echo $_ENV['NOM_VARIABLE'];
 
+// echo $_ENV['TEST'];
+?> 
+<?php
+
+require('./inc/bas.inc.php');
 ?>
 
-<img src="<?php echo RACINE_SITE; ?>/inc/img/bleu.jpg" alt="test image">
