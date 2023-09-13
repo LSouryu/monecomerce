@@ -1,6 +1,6 @@
-#libraries node
+# librairies node
 /vendor/
-#variable d'environement
+# variables d'environnement
 .env
-#fichier init BDD etc ...
+# fichiers init BDD etc...
 /database/
