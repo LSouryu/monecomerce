@@ -37,15 +37,16 @@ if (!empty($_POST)) {
     }
     foreach ($_POST as $indice => $valeur) {
         $_POST[$indice] = htmlentities(addslashes($valeur));
+        $idProduit = intval($_POST['id_produit']);
     }
-    $resultat_commande = executeRequete("SELECT COUNT(*) AS nb_commande FROM details_commande WHERE id_produit=$_POST[id_produit]");
+    $resultat_commande = executeRequete("SELECT COUNT(*) AS nb_commande FROM details_commande WHERE id_produit=$idProduit");
     $donnees_commande = $resultat_commande->fetch_assoc();
     $nb_commandes = $donnees_commande['nb_commande'];
     if ($nb_commandes > 0) {
         $contenu .= '<div class="erreur">La suppression du produit : ' . $_GET['id_produit'] . ' est impossible => commande en cours ...</div>';
         $_GET['action'] = 'affichage';
     } else {
-        executeRequete("REPLACE INTO produit (id_produit, reference, categorie, titre, description, couleur, taille,public, photo, prix, stock) VALUES('$_POST[id_produit]', '$_POST[reference]', '$_POST[categorie]','$_POST[titre]', '$_POST[description]', '$_POST[couleur]', '$_POST[taille]', '$_POST[public]', '$photo_bdd', '$_POST[prix]', '$_POST[stock]')");
+        executeRequete("REPLACE INTO produit (id_produit, reference, categorie, titre, description, couleur, taille,public, photo, prix, stock) VALUES('$idProduit', '$_POST[reference]', '$_POST[categorie]','$_POST[titre]', '$_POST[description]', '$_POST[couleur]', '$_POST[taille]', '$_POST[public]', '$photo_bdd', '$_POST[prix]', '$_POST[stock]')");
         $contenu .= '<div class="validation">Le produit a bien été enregitré</div>';
         $_GET['action'] = 'affichage';
     }
